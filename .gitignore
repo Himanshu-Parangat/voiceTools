@@ -1,0 +1,19 @@
+# Python temporary files and directories
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.Python-*
+.pip-wheel-metadata
+
+# Virtual environment
+*.env
+.env/
+
+
+# other stuff
+*.pyc
+*.pyo
+__pycache__/
+*.pyo
