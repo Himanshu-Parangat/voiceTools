@@ -3,5 +3,10 @@
 this will start the main application
 """
 
+from src.app import main
 
-print("application is starting...")
+print("Hihi, from the voiceTool devs\n\n")
+
+
+if __name__ == "__main__":
+    main()
