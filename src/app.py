@@ -9,6 +9,10 @@ app = FastAPI()
 templates = Jinja2Templates(directory="src/component")
 
 
+@app.get("/setup")
+async def setup():
+    return {"allow": "permission", "type-mic":"mic","type-audio":"audio"}
+
 @app.get("/")
 async def read_root():
     return {"Hello": "World"}
