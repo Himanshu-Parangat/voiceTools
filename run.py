@@ -3,12 +3,8 @@
 this will start the main application
 """
 
-import uvicorn
-from src.app import main 
-
-print("Hihi, from the voiceTool devs\n\n")
-
+from src.app import run_app
+print("\n\nHihi, from the voiceTool devs")
 
 if __name__ == "__main__":
-    main()
-    uvicorn.run("src.app:app",reload=True)
+    run_app()

@@ -1,9 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
-
-def main():
-    print("project running...")
-
+import uvicorn
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/component")
@@ -20,3 +17,7 @@ async def read_root():
 @app.get("/dashboard")
 async def dashboard(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+def run_app():
+    print("\napplication is running...")
+    uvicorn.run("src.app:app",reload=True)
