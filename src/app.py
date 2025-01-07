@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import uvicorn
+from src.configuration.config_handler import handle_config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/component")
@@ -20,4 +21,5 @@ async def dashboard(request: Request):
 
 def run_app():
     print("\napplication is running...")
+    handle_config()
     uvicorn.run("src.app:app",reload=True)
