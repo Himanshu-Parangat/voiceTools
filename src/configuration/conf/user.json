@@ -1,12 +1,8 @@
-[
-  {
-    "user": {
-      "joiningDate": "",
-      "onboardingStatus": "",
-      "name": {
-        "firstName": "",
-        "lastName": ""
-      }
-    }
+{
+  "joiningDate": null,
+  "onboardingStatus": true,
+  "name": {
+    "firstName": "user",
+    "lastName": null
   }
-]
+}

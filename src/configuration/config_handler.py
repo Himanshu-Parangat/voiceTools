@@ -1,21 +1,33 @@
 import os, json
+from datetime import datetime 
+from pydantic import BaseModel 
 
 CONFIG_DIR = "./src/configuration/conf"
-DEFAULT_CONFIG = "./src/configuration/conf/default.json"
 USER_CONFIG = "./src/configuration/conf/user.json"
 USER_CONFIG_BACKED = "./src/configuration/conf/user.backup.json"
-CONFIG = [
-  {
-    "user": {
-      "joiningDate": "",
-      "onboardingStatus": "",
-      "name": {
-        "firstName": "",
-        "lastName": ""
-      }
-    }
+CONFIG = {
+  "user": {
+    "joiningDate": None,
+    "onboardingStatus": True,
+    "name": {
+      "firstName": "user",
+      "lastName": None
+    },
   }
-]
+}
+
+
+class Name(BaseModel):
+    firstName: str 
+    lastName: str | None 
+
+
+class User(BaseModel):
+    joiningDate: datetime | None
+    onboardingStatus: bool 
+    name: Name
+
+user_data = User(**CONFIG["user"])
 
 
 def ensure_config_directory():
@@ -30,37 +42,43 @@ def ensure_config_directory():
         print("configuration directory located sucessfully")
 
 
-def ensure_default_config():
-    """
-    regenerate default config
-    """
-    with open(DEFAULT_CONFIG, "w") as file:
-        json.dump(CONFIG, file, indent=2)
-    print("fresh default config genrated")
-
-def ensure_user_config():
+def ensure_user_config_exists():
     """
     genrate user config if not there
     """
     if not os.path.exists(USER_CONFIG):
         print("missing user configuration")
-        print("loading default configuration")
-        with open(DEFAULT_CONFIG, "r") as default_file:
-            default_data = json.load(default_file)
-        print("copying default configuration to user configuration")
-        with open(USER_CONFIG, "w") as user_file:
-            json.dump(default_data, user_file, indent=2)
+        genrate_user_configuration()
+    else:
+        print("found existing user configuration file")
 
+
+def genrate_user_configuration():
+    """
+    genraing config based on pydantic model 
+    """
+    print("genrating user configuration...")
+    with open(USER_CONFIG, "w") as user_file:
+        user_file.write(user_data.model_dump_json(indent=2))
 
 def load_user_config():
+    """
+    is user config is valid json 
+    """
     try:
         with open(USER_CONFIG, "r") as user_file:
-            user_data = json.load(user_file)
-            return user_data
-    except json.JSONDecodeError as e:
-        print(f"Error: The user configuration file '{USER_CONFIG}' contains invalid JSON. Details: {e}")
-        backup_user_config()
-        raise e
+            json.load(user_file)
+            print("valid json found")
+        return True
+
+    except (json.JSONDecodeError, FileNotFoundError) :
+        print("invalid json")
+        return False  
+
+
+def validate_user_config():
+    ...
+
 
 def backup_user_config(): 
     with open(USER_CONFIG, "r") as user_file:
@@ -76,5 +94,7 @@ def handle_config():
     """
     print("loading the config...")
     ensure_config_directory()
-    ensure_default_config()
-    ensure_user_config()
+    ensure_user_config_exists()
+    print("---------------------------")
+
+    load_user_config()
