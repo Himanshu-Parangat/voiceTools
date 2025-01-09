@@ -1,6 +1,6 @@
 import os, json
 from datetime import datetime 
-from pydantic import BaseModel 
+from pydantic import BaseModel, ValidationError 
 
 CONFIG_DIR = "./src/configuration/conf"
 USER_CONFIG = "./src/configuration/conf/user.json"
@@ -21,11 +21,19 @@ class Name(BaseModel):
     firstName: str 
     lastName: str | None 
 
+    class Config:
+        extra = "forbid" # no extra option
 
 class User(BaseModel):
     joiningDate: datetime | None
     onboardingStatus: bool 
     name: Name
+
+
+    class Config:
+        title = "config option"
+        description = "A model for verfying config"
+        extra = "forbid" # no extra option
 
 user_data = User(**CONFIG["user"])
 
@@ -48,12 +56,12 @@ def ensure_user_config_exists():
     """
     if not os.path.exists(USER_CONFIG):
         print("missing user configuration")
-        genrate_user_configuration()
+        _genrate_user_configuration()
     else:
         print("found existing user configuration file")
 
 
-def genrate_user_configuration():
+def _genrate_user_configuration():
     """
     genraing config based on pydantic model 
     """
@@ -61,26 +69,45 @@ def genrate_user_configuration():
     with open(USER_CONFIG, "w") as user_file:
         user_file.write(user_data.model_dump_json(indent=2))
 
-def load_user_config():
+
+def _is_valid_json():
     """
-    is user config is valid json 
+    check if user config is valid json
     """
     try:
         with open(USER_CONFIG, "r") as user_file:
             json.load(user_file)
             print("valid json found")
-        return True
+            return True
 
     except (json.JSONDecodeError, FileNotFoundError) :
         print("invalid json")
-        return False  
+        return False
+
+def _is_valid_config_schema():
+    """
+    check if user config match pydantic BaseModel
+    """
+    with open(USER_CONFIG, "r") as user_file:
+        user_data = json.load(user_file)
+        try:
+            _validate = User(**user_data)
+            print("config match valid schema")
+            return True
+
+        except ValidationError as e:
+            print("invalid config option Validation Error:", e)
+            return False
 
 
-def validate_user_config():
-    ...
+def fix_user_config():
+    print("fixing config file...")
+    _backup_user_config()
+    print("removing bad config file...")
+    _genrate_user_configuration()
 
 
-def backup_user_config(): 
+def _backup_user_config(): 
     with open(USER_CONFIG, "r") as user_file:
         content = user_file.read()
     with open(USER_CONFIG_BACKED, "w") as user_backup_file:
@@ -92,9 +119,17 @@ def handle_config():
     """
     handle everything related config
     """
-    print("loading the config...")
+    print("\n\nlocating config...")
     ensure_config_directory()
     ensure_user_config_exists()
-    print("---------------------------")
+    print("loading the config...")
 
-    load_user_config()
+    json_status = _is_valid_json()
+    schema_status = _is_valid_config_schema()
+    print("json status",json_status,"and schema status", schema_status)
+
+    if not (json_status and schema_status):
+        fix_user_config()
+        handle_config()
+    else:
+        print("all set..")

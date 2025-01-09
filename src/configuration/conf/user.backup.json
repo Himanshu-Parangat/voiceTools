@@ -1,6 +1,7 @@
 {
   "joiningDate": null,
   "onboardingStatus": true,
+	"goto": true,
   "name": {
     "firstName": "user",
     "lastName": null
