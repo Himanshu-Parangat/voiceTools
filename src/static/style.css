@@ -1,0 +1,26 @@
+:root {
+  --font-family: sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+  --color-text: #000;
+  --color-bg: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* 16px base */
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
