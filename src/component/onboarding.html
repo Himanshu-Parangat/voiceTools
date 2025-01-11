@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onboarding Hover Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex items-center justify-center h-screen bg-gradient-to-r from-pink-100 to-purple-200"
+  >
+    <div
+      class="bg-white shadow-lg rounded-3xl p-8 max-w-md w-full hover:shadow-2xl transition-shadow transform hover:scale-105"
+    >
+      <h2 class="text-2xl font-bold text-purple-600 mb-6 text-center">
+        Hi, how should we address you?
+      </h2>
+
+      <!-- First Name -->
+      <div class="mb-4">
+        <label for="first-name" class="block text-sm font-medium text-gray-700"
+          >First Name</label
+        >
+        <input
+          type="text"
+          id="first-name"
+          placeholder='Leave blank to use "User" as default'
+          class="mt-2 block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm px-4 py-2"
+        />
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-4">
+        <label for="last-name" class="block text-sm font-medium text-gray-700"
+          >Last Name <span class="text-gray-400 text-xs">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id="last-name"
+          placeholder=" last name"
+          class="mt-2 block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm px-4 py-2"
+        />
+      </div>
+
+      <!-- Gender -->
+      <div class="mb-4">
+        <label for="gender" class="block text-sm font-medium text-gray-700"
+          >Gender <span class="text-gray-400 text-xs">(optional)</span></label
+        >
+        <select
+          id="gender"
+          class="mt-2 block w-full rounded-lg border border-gray-300 shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm px-4 py-2"
+        >
+          <option value="" disabled selected>Select your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Transgender</option>
+          <option value="other">Other</option>
+          <option value="other">Prefer not to say</option>
+        </select>
+      </div>
+
+      <!-- Show Onboarding Next Time -->
+      <div class="flex items-center mb-6">
+        <input
+          id="show-onboarding"
+          type="checkbox"
+          class="h-5 w-5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+					checked
+        />
+        <label for="show-onboarding" class="ml-3 block text-sm text-gray-700"
+          >Show onboarding next time?</label
+        >
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-between">
+        <button
+          class="bg-pink-300 text-white font-semibold px-6 py-2 rounded-full shadow-sm hover:bg-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-300"
+        >
+          Skip
+        </button>
+        <button
+          class="bg-purple-500 text-white font-semibold px-6 py-2 rounded-full shadow-sm hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        >
+          Confirm
+        </button>
+      </div>
+
+      <!-- Info Tooltip -->
+
+      <p class="text-sm text-gray-600 mt-6 text-center">
+        <span
+          class="underline cursor-pointer"
+          title="This is a part of your onboarding journey to enhance your experience! 
+
+Don't worry—you're always in control of your data, 
+
+and We will never share your data with anyone or any third party.
+
+You can update this information anytime from settings."
+        >
+          Why do we need this info?
+        </span>
+      </p>
+
+      <!-- Info Tooltip -->
+    </div>
+  </body>
+</html>
