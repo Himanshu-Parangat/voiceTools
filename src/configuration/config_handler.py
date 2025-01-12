@@ -1,6 +1,7 @@
 import os, json
 from datetime import datetime 
 from pydantic import BaseModel, ValidationError 
+from enum import Enum
 
 CONFIG_DIR = "./src/configuration/conf"
 USER_CONFIG = "./src/configuration/conf/user.json"
@@ -9,6 +10,7 @@ CONFIG = {
   "user": {
     "joiningDate": None,
     "onboardingStatus": True,
+    "genderIdentity": "none", 
     "name": {
       "firstName": "user",
       "lastName": None
@@ -16,6 +18,15 @@ CONFIG = {
   }
 }
 
+
+class GenderIdentity(str, Enum):
+    male = "male"
+    female = "female"
+    transgender = "transgender"
+    nonbinary = "nonbinary"
+    agender = "agender"
+    other = "other"
+    none = "none"
 
 class Name(BaseModel):
     firstName: str 
@@ -25,8 +36,9 @@ class Name(BaseModel):
         extra = "forbid" # no extra option
 
 class User(BaseModel):
-    joiningDate: datetime | None
+    joiningDate: str | None
     onboardingStatus: bool 
+    genderIdentity: GenderIdentity
     name: Name
 
 

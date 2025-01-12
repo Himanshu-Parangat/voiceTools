@@ -1,8 +1,9 @@
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from datetime import datetime
+from .configuration.config_handler import User 
 
 from src.configuration.config_handler import handle_config
 
@@ -16,14 +17,26 @@ async def onboarding(request: Request):
 
 
 @app.post("/onboarding")
-async def process_onboarding(firstName, lastName, genderIdentity, onboardingStatus):
-    data = {
+async def process_onboarding(
+    firstName: str = Form(...),
+    lastName: str = Form(...),
+    genderIdentity: str = Form(...),
+    onboardingStatus: str = Form("false"),
+):
+    CONFIG = {
+      "user": {
         "joiningDate": datetime.now().strftime("%Y-%b-%d-%H:%M:%S"),
         "genderIdentity": genderIdentity,
         "onboardingStatus": onboardingStatus,
-        "name": {"firstName": firstName, "lastName": lastName},
+        "name": {
+          "firstName": firstName,
+          "lastName": lastName
+        },
+      }
     }
-    print(data)
+
+    valid_data = User(**CONFIG["user"])
+    print(valid_data)
 
 
 @app.get("/")
