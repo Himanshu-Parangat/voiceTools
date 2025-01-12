@@ -10,7 +10,7 @@ CONFIG = {
   "user": {
     "joiningDate": None,
     "onboardingStatus": True,
-    "genderIdentity": "none", 
+    "genderIdentity": "prefer_not_to_say", 
     "name": {
       "firstName": "user",
       "lastName": None
@@ -26,7 +26,7 @@ class GenderIdentity(str, Enum):
     nonbinary = "nonbinary"
     agender = "agender"
     other = "other"
-    none = "none"
+    prefer_not_to_say = "prefer_not_to_say"
 
 class Name(BaseModel):
     firstName: str 

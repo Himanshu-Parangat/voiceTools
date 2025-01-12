@@ -1,7 +1,7 @@
 {
   "joiningDate": null,
   "onboardingStatus": true,
-  "genderIdentity": "male",
+  "genderIdentity": "prefer_not_to_say",
   "name": {
     "firstName": "user",
     "lastName": null
