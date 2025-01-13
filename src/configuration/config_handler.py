@@ -1,6 +1,5 @@
 import os, json
-from datetime import datetime 
-from pydantic import BaseModel, ValidationError 
+from pydantic import BaseModel, ValidationError, Field
 from enum import Enum
 
 CONFIG_DIR = "./src/configuration/conf"
@@ -29,7 +28,7 @@ class GenderIdentity(str, Enum):
     prefer_not_to_say = "prefer_not_to_say"
 
 class Name(BaseModel):
-    firstName: str 
+    firstName: str = Field(default="user")
     lastName: str | None 
 
     class Config:
@@ -145,3 +144,23 @@ def handle_config():
         handle_config()
     else:
         print("all set..")
+
+
+
+def get_option():
+    """
+    get set options from config
+    """
+    with open(USER_CONFIG, "r") as user_file:
+        user_data = json.load(user_file)
+        data = User(**user_data)
+        return data
+
+
+def update_config(new_user_data):
+    """
+    updata config based on pydantic model
+    """
+    print("updating user configuration...")
+    with open(USER_CONFIG, "w") as user_file:
+        user_file.write(new_user_data.model_dump_json(indent=2))
