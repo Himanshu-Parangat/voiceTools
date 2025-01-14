@@ -1,9 +1,9 @@
 {
-  "joiningDate": "2025-Jan-13-15:25:47",
-  "onboardingStatus": false,
+  "joiningDate": "2025-Jan-14-22:40:39",
+  "onboardingStatus": true,
   "genderIdentity": "prefer_not_to_say",
   "name": {
-    "firstName": "user",
-    "lastName": ""
+    "firstName": "test",
+    "lastName": "test"
   }
 }

@@ -113,12 +113,12 @@ def _is_valid_config_schema():
 
 def fix_user_config():
     print("fixing config file...")
-    _backup_user_config()
+    backup_user_config()
     print("removing bad config file...")
     _genrate_user_configuration()
 
 
-def _backup_user_config(): 
+def backup_user_config(): 
     with open(USER_CONFIG, "r") as user_file:
         content = user_file.read()
     with open(USER_CONFIG_BACKED, "w") as user_backup_file:

@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 from src.configuration.config_handler import handle_config
 
 from .configuration.config_handler import GenderIdentity, Name, User 
-from .configuration.config_handler import  get_option, update_config, _backup_user_config
+from .configuration.config_handler import  get_option, update_config, backup_user_config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/component")
@@ -33,8 +33,9 @@ async def process_onboarding(
         genderIdentity=genderIdentity,
         joiningDate= datetime.now().strftime("%Y-%b-%d-%H:%M:%S"),
     )
-    _backup_user_config()
+    backup_user_config()
     update_config(user)
+    return RedirectResponse(url="/dashboard",status_code=303)
 
 
 @app.get("/")
