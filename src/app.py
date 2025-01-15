@@ -49,7 +49,7 @@ async def root():
 
 @app.get("/dashboard")
 async def dashboard(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("dashboard.html", {"request": request})
 
 
 
