@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://cdn.tailwindcss.com"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="{{ url_for('static',path="css/static.css") }}">
     <title>{%block title %} Voice Tools {% endblock %}</title>
   </head>
-  <body>
+  <body class="bg-primary-bg text-primary-fg">
     <header>
-      <p>welcome to the voice tools</p>
+      <p class="text-secondary-fg" >welcome to the voice tools</p>
     </header>
     <main>{%block content%} {% endblock %}</main>
     <footer>
-      <p>all rights are reseved</p>
+      <p class="text-secondary-fg" >all rights are reseved</p>
     </footer>
   </body>
 </html>

@@ -1,9 +1,48 @@
 :root {
-  --font-family: sans-serif;
+  --font-family: "Poppins", Arial;
   --font-size: 16px;
   --line-height: 1.5;
-  --color-text: #000;
-  --color-bg: #fff;
+
+  --color-accent: #ffbade;
+  --color-text: #ffffff;
+  --color-highlight: #111111;
+  --primary-fg: #ccc;
+  --secondary-fg: #6c757d;
+
+  --primary-bg: #201f31;
+  --secondary-bg: #2b2a3c;
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-color {
+  color: var(--color-text);
+}
+
+.text-highlight {
+  color: var(--color-highlight);
+}
+
+.text-primary-fg {
+  color: var(--primary-fg);
+}
+
+.text-secondary-fg {
+  color: var(--secondary-fg);
+}
+
+.bg-primary-bg {
+  background-color: var(--primary-bg);
+}
+
+.bg-secondary-bg {
+  background-color: var(--secondary-bg);
+}
+
+.font-sans {
+  font-family: "Poppins", Arial, sans-serif;
 }
 
 * {
@@ -15,12 +54,4 @@
 
 html {
   font-size: 100%; /* 16px base */
-}
-
-body {
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  color: var(--color-text);
-  background-color: var(--color-bg);
 }

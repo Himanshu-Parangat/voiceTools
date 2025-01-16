@@ -3,6 +3,7 @@ from datetime import datetime
 import uvicorn
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from src.configuration.config_handler import handle_config
@@ -11,6 +12,7 @@ from .configuration.config_handler import GenderIdentity, Name, User
 from .configuration.config_handler import  get_option, update_config, backup_user_config
 
 app = FastAPI()
+app.mount("/static",StaticFiles(directory="src/static"), name="static" )
 templates = Jinja2Templates(directory="src/component")
 
 
