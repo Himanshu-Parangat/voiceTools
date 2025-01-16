@@ -1,95 +1,95 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>onboarding</title>
-  </head>
-  <body>
-    <div class="holder">
-      <!-- greeting message -->
-      <h3 class="greeting">Hi, how should we address you?</h3>
+{% extends 'index.html' %} 
 
-      <form method="POST">
-        <!-- get first name  -->
-        <label for="firstName">First Name</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value=""
-          placeholder="default is user"
-        />
+{%block title %}onboarding{% endblock %}
 
-        <br />
+{% block content %}
 
-        <!-- get last name  -->
-        <label for="lastName">Last Name</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value=""
-          placeholder="your last name"
-        />
+<div class="holder">
+  <!-- greeting message -->
+  <h3 class="greeting">Hi, how should we address you?</h3>
 
-        <br />
+  <form method="POST">
+    <!-- get first name  -->
+    <label for="firstName">First Name</label>
+    <input
+      type="text"
+      id="firstName"
+      name="firstName"
+      value=""
+      placeholder="default is user"
+    />
 
-        <!-- get gender identity -->
-        <label for="gender">Gender <span>(optional)</span> </label>
-        <select id="gender" name="genderIdentity">
-          <option value="" disabled selected>your gender identity</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="transgender">Transgender</option>
-          <option value="nonbinary">Non-Binary</option>
-          <option value="agender">Agender</option>
-          <option value="other">Other</option>
-          <option value="prefer_not_to_say">Prefer Not to Say</option>
-        </select>
+    <br />
 
-        <br />
+    <!-- get last name  -->
+    <label for="lastName">Last Name</label>
+    <input
+      type="text"
+      id="lastName"
+      name="lastName"
+      value=""
+      placeholder="your last name"
+    />
 
-				<!-- get onboarding status -->
-				<input type="checkbox" id="onboardingStatus" name="onboardingStatus" value="true" checked>
-				<label for="onboardingStatus">Show onboarding next time?</label>
+    <br />
 
-				<br />
+    <!-- get gender identity -->
+    <label for="gender">Gender <span>(optional)</span> </label>
+    <select id="gender" name="genderIdentity">
+      <option value="" disabled selected>your gender identity</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="transgender">Transgender</option>
+      <option value="nonbinary">Non-Binary</option>
+      <option value="agender">Agender</option>
+      <option value="other">Other</option>
+      <option value="prefer_not_to_say">Prefer Not to Say</option>
+    </select>
 
-				<!-- action skip or submit  -->
+    <br />
 
-				<button type="submit" name="action" value="skip">Skip</button>
-				<button type="submit" name="action" value="submit">Confirm</button>
+    <!-- get onboarding status -->
+    <input
+      type="checkbox"
+      id="onboardingStatus"
+      name="onboardingStatus"
+      value="true"
+      checked
+    />
+    <label for="onboardingStatus">Show onboarding next time?</label>
 
-      </form>
+    <br />
 
-      <!-- popover hover message -->
+    <!-- action skip or submit  -->
 
-      <button type="button" popovertarget="hover-notice">
-        Why do we need this info?
-      </button>
+    <button type="submit" name="action" value="skip">Skip</button>
+    <button type="submit" name="action" value="submit">Confirm</button>
+  </form>
 
-      <!-- popover message -->
+  <!-- popover hover message -->
 
-      <div class="hover-notice" id="hover-notice" popover>
-        <p>Fair use policy</p>
-        <ul>
-          <li>
-            This is a part of your onboarding journey to enhance your
-            experience!
-          </li>
+  <button type="button" popovertarget="hover-notice">
+    Why do we need this info?
+  </button>
 
-          <li>Don't worry—you're always in control of your data.</li>
+  <!-- popover message -->
 
-          <li>We will never share your data with anyone or any third party.</li>
+  <div class="hover-notice" id="hover-notice" popover>
+    <p>Fair use policy</p>
+    <ul>
+      <li>
+        This is a part of your onboarding journey to enhance your experience!
+      </li>
 
-          <li>
-            You can update or reset this information anytime from settings.
-          </li>
-        </ul>
-      </div>
+      <li>Don't worry—you're always in control of your data.</li>
 
-      <!-- popover message ends -->
-    </div>
-  </body>
-</html>
+      <li>We will never share your data with anyone or any third party.</li>
+
+      <li>You can update or reset this information anytime from settings.</li>
+    </ul>
+  </div>
+
+  <!-- popover message ends -->
+</div>
+
+{% endblock %}
