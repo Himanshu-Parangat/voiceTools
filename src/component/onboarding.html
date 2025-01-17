@@ -4,92 +4,103 @@
 
 {% block content %}
 
-<div class="holder">
+<div class="onboarding-panel flex flex-col justify-center">
   <!-- greeting message -->
-  <h3 class="greeting">Hi, how should we address you?</h3>
+  <h3 class="greeting text-3xl mb-4 font-bold ">Hi, how should we <span class="text-accent" >address</span> you?</h3>
 
-  <form method="POST">
-    <!-- get first name  -->
-    <label for="firstName">First Name</label>
-    <input
-      type="text"
-      id="firstName"
-      name="firstName"
-      value=""
-      placeholder="default is user"
-    />
 
-    <br />
+	<div class="forum-holder bg-secondary-bg p-6 rounded-3xl  ">
 
-    <!-- get last name  -->
-    <label for="lastName">Last Name</label>
-    <input
-      type="text"
-      id="lastName"
-      name="lastName"
-      value=""
-      placeholder="your last name"
-    />
 
-    <br />
+		<form method="POST" class="space-y-1">
+			<!-- get first name  -->
+			<div class="first-name flex flex-col space-y-1">
+				<label for="firstName">First Name</label>
+				<input class = "text-highlight placeholder-slate-700 px-3 py-1 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-300"
+					type="text"
+					id="firstName"
+					name="firstName"
+					value=""
+					placeholder="default is user"
+					autocomplete="off"
+				/>
+			</div>
 
-    <!-- get gender identity -->
-    <label for="gender">Gender <span>(optional)</span> </label>
-    <select id="gender" name="genderIdentity">
-      <option value="" disabled selected>your gender identity</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="transgender">Transgender</option>
-      <option value="nonbinary">Non-Binary</option>
-      <option value="agender">Agender</option>
-      <option value="other">Other</option>
-      <option value="prefer_not_to_say">Prefer Not to Say</option>
-    </select>
+			<!-- get last name  -->
+			<div class="last-name flex flex-col space-y-0">
+				<label for="lastName">Last Name</label>
+				<input class = "text-highlight placeholder-slate-700 px-3 py-1 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-300"
+					type="text"
+					id="lastName"
+					name="lastName"
+					value=""
+					placeholder="your last name"
+					autocomplete="off"
+				/>
+			</div>
 
-    <br />
+			<!-- get gender identity -->
+			<div class="gender-identity flex flex-col space-y-0">
+				<label for="gender">Gender <span>(optional)</span> </label>
+				<select id="gender" name="genderIdentity" class=" text-highlight placeholder-slate-700 px-3 py-1 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-300">
+					<option value="" disabled selected>your gender identity</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="transgender">Transgender</option>
+					<option value="nonbinary">Non-Binary</option>
+					<option value="agender">Agender</option>
+					<option value="other">Other</option>
+					<option value="prefer_not_to_say">Prefer Not to Say</option>
+				</select>
+			</div>
 
-    <!-- get onboarding status -->
-    <input
-      type="checkbox"
-      id="onboardingStatus"
-      name="onboardingStatus"
-      value="true"
-      checked
-    />
-    <label for="onboardingStatus">Show onboarding next time?</label>
+			<!-- get onboarding status -->
+			<div class="onboarding-status flex flex-row space-x-2">
+				<input class=" h-5 w-5 accent-pink-300 mt-3 mb-3"
+					type="checkbox"
+					id="onboardingStatus"
+					name="onboardingStatus"
+					value="true"
+					checked
+				/>
+				<label for="onboardingStatus" class="mt-2 mb-3">Show onboarding next time?</label>
+			</div>
 
-    <br />
+			<!-- action skip or submit  -->
 
-    <!-- action skip or submit  -->
+			<div class="action-button flex justify-between">
+				<button class="bg-accent-bg text-highlight font-semibold  px-3 py-1 rounded-xl shadow-lg hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-pink-400" type="submit" name="action" value="skip">Skip</button>
+				<button class="bg-accent-bg text-highlight font-semibold  px-3 py-1 rounded-xl shadow-lg hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-pink-400" type="submit" name="action" value="submit">Confirm</button>
+			</div>
+		</form>
 
-    <button type="submit" name="action" value="skip">Skip</button>
-    <button type="submit" name="action" value="submit">Confirm</button>
-  </form>
+		<!-- popover hover message -->
 
-  <!-- popover hover message -->
+		<div class="hover-notice flex justify-center">
+			<button type="button" popovertarget="hover-notice" class="text-secondary-fg underline " >
+				Why do we need this info?
+			</button>
+		</div>
 
-  <button type="button" popovertarget="hover-notice">
-    Why do we need this info?
-  </button>
+		<!-- popover message -->
 
-  <!-- popover message -->
+		<div class="hover-notice bg-secondary-bg text-primary-fg border border-white  p-4 rounded-xl" id="hover-notice" style="left: 50%; top: 50%; transform: translate(-50%, -50%);" popover>
+			<p class="text-accent" >Fair use policy</p>
+				<div class="border-t border-gray-300 mt-2"></div>
+				<p class="pb-1">
+					This is a part of your onboarding journey to enhance your experience!
+				</p>
+			
+			<ul class="list-disc pl-4" >
+				<li>Don’t worry—you're always in control of your data.</li>
+				<li>We will never share your data with anyone or any third parties.</li>
+				<li>You can update or reset this information anytime from the settings.</li>
+			</ul>
+		</div>
 
-  <div class="hover-notice" id="hover-notice" popover>
-    <p>Fair use policy</p>
-    <ul>
-      <li>
-        This is a part of your onboarding journey to enhance your experience!
-      </li>
+		<!-- popover message ends -->
 
-      <li>Don't worry—you're always in control of your data.</li>
-
-      <li>We will never share your data with anyone or any third party.</li>
-
-      <li>You can update or reset this information anytime from settings.</li>
-    </ul>
-  </div>
-
-  <!-- popover message ends -->
+	</div>
 </div>
 
 {% endblock %}

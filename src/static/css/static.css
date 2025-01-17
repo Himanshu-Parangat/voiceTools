@@ -4,8 +4,9 @@
   --line-height: 1.5;
 
   --color-accent: #ffbade;
+	--color-secondry-accent: #74DEFF ;
   --color-text: #ffffff;
-  --color-highlight: #111111;
+  --color-highlight: #201f31;
   --primary-fg: #ccc;
   --secondary-fg: #6c757d;
 
@@ -15,6 +16,14 @@
 
 .text-accent {
   color: var(--color-accent);
+}
+
+.bg-accent-bg {
+  background: var(--color-accent);
+}
+
+.bg-secondary-accent-bg {
+	background: var(--color-secondry-accent);
 }
 
 .text-color {

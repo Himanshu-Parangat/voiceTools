@@ -8,13 +8,19 @@
 		<link rel="stylesheet" href="{{ url_for('static',path="css/static.css") }}">
     <title>{%block title %} Voice Tools {% endblock %}</title>
   </head>
-  <body class="bg-primary-bg text-primary-fg">
-    <header>
+  <body class="bg-primary-bg text-primary-fg h-screen flex flex-col justify-between">
+
+		{# header  #}
+    <header class="flex justify-center text-xs m-1" >
       <p class="text-secondary-fg" >welcome to the voice tools</p>
     </header>
-    <main>{%block content%} {% endblock %}</main>
-    <footer>
-      <p class="text-secondary-fg" >all rights are reseved</p>
+
+		{# main panels #}
+    <main class="flex justify-center" >{%block content%} {% endblock %}</main>
+
+		{# footer  #}
+    <footer class="flex justify-center text-xs m-1 " >
+      <p class="text-secondary-fg" > All rights reserved. © </p>
     </footer>
   </body>
 </html>
