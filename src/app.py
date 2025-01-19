@@ -11,6 +11,8 @@ from src.configuration.config_handler import handle_config
 from .configuration.config_handler import GenderIdentity, Name, User 
 from .configuration.config_handler import  get_option, update_config, backup_user_config
 
+from .record.record_handler import record
+
 app = FastAPI()
 app.mount("/static",StaticFiles(directory="src/static"), name="static" )
 templates = Jinja2Templates(directory="src/component")
@@ -58,4 +60,5 @@ async def dashboard(request: Request):
 def run_app():
     print("\napplication is running...")
     handle_config()
+    record()
     uvicorn.run("src.app:app", reload=True)
