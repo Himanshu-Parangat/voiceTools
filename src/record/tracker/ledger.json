@@ -1,0 +1,70 @@
+[
+  {
+    "fileId": "8a72cdee-1234-4a98-82e1-908bba47ef12",
+    "fileName": "recording_1",
+    "fileSizeKB": 5120,
+    "durationSec": 720,
+    "createdAt": "2025-01-19T10:30:00Z",
+    "filePath": "./store/ambient_sounds.wav",
+    "fileType": "WAV",
+    "owner": "user456",
+    "extras": {
+      "recordingDevice": "Zoom H6 Handy Recorder",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 48000,
+      "bitDepth": 24,
+      "byteRate": 460800,
+      "gainLevel": 0.9
+    },
+    "accessCount": 12,
+    "categories": ["vocalFry", "pichTraining"],
+    "description": "test recording."
+  },
+  {
+    "fileId": "fa9debbc-5678-4bcd-a890-2238d1f44ee7",
+    "fileName": "guitar_solo",
+    "fileSizeKB": 2048,
+    "durationSec": 180,
+    "createdAt": "2025-01-18T16:45:00Z",
+    "filePath": "./store/guitar_solo.wav",
+    "fileType": "WAV",
+    "owner": "user789",
+    "extras": {
+      "recordingDevice": "Focusrite Scarlett 2i2",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 44100,
+      "bitDepth": 16,
+      "byteRate": 176400,
+      "gainLevel": 0.75
+    },
+    "accessCount": 7,
+    "categories": ["vocalFry", "pichTraining"],
+    "description": "A clean and crisp recording."
+  },
+  {
+    "fileId": "6c29dbba-5445-4511-a282-3d0611f87106",
+    "fileName": "example_file_1",
+    "fileSizeKB": 1024,
+    "duration": 300,
+    "createdAt": "2025-01-20T12:00:00Z",
+    "filePath": "./store/example_file_1.wav",
+    "fileType": "WAV",
+    "checksum": "d41d8cd98f00b204e9800998ecf8427e",
+    "owner": "user123",
+    "extras": {
+      "recordingDevice": "Microphone X200",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 44100,
+      "audioFormat": "WAV",
+      "bitDepth": 24,
+      "byteRate": 211680,
+      "gainLevel": 0.85
+    },
+    "accessCount": 5,
+    "categories": ["vocalFry", "pichTraining"],
+    "description": "An example video file for testing."
+  }
+]
