@@ -1,3 +1,7 @@
+import os
+from datetime import datetime
+from enum import Enum
+from pydantic import BaseModel, UUID4
 import sounddevice as sd
 from typing import Any, Dict, List
 
@@ -47,9 +51,69 @@ def check_input_settings(device_name):
         print(f"Input settings error: {e}")
         return False
 
+class FileType(str, Enum):
+    WAV = "wav"
+    MP4 = "mp4"
+
+class Channels(int, Enum):
+    mono = 1
+    stereo = 2 
+
+
+class Extras(BaseModel):
+    recordingDevice : str
+    driver : str
+    channels : Channels
+    sampleRateHz : int | float
+    bitDepth: int | float
+    byteRate : int | float
+    gainLevel : int | float
+
+    class Config:
+        extra = "forbid" # no extra option
+
+
+class Record(BaseModel):
+    fileId : UUID4
+    fileName : str
+    fileSizeKB : int | float
+    durationSec : int | float
+    createdAt : datetime
+    filePath: str
+    fileType : FileType
+    owner: str
+    extras : Extras 
+    accessCount : int
+    categories: list[str]
+    description: str
+
+    class Config:
+        extra = "forbid" # no extra option
+
+
+class Ledger(BaseModel):
+    record : Record  
+
+    class Config:
+        title = "Ledger record"
+        description = "A model to validate record entry in Ledger"
+
+
+LEDGER_DIR = "./src/record/tracker/" 
+RECORDINGS_DIR = "./src/record/recordings/"
+
+def ensure_important_directory():
+    """
+    genrate dir if not present
+    """
+    ledger_dir = os.path.exists(LEDGER_DIR) 
+    recordings_dir = os.path.exists(RECORDINGS_DIR)
+    if not ( ledger_dir or recordings_dir):
+        print("missing important directory")
+    else:
+        print("found important directory")
+        
+
 def record():
     print("\n\nrecord status checking...")
-
-
-
-
+    ensure_important_directory()
