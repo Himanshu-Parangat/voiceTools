@@ -135,13 +135,13 @@ def ensure_ledger_exist():
     if not os.path.exists(LEDGER_FILE):
         print("No previous ledger found")
         with open(LEDGER_FILE,"w") as ledger:
-            ledger.writelines(LEDGER_DATA)      
-            print(f"wrinting...{LEDGER_DATA}")
+            json.dump(LEDGER_DATA,ledger,indent=2)
+            print(f"wrinting empty {LEDGER_DATA} ...")
     else:
         print("found existing Ledger.")
 
 
-def genrate_ledger():
+def genrate_ledger() -> dict:
     sample_extras = Extras(
         recordingDevice="blutooth ex 2p1",
         driver="ffmpeg",
@@ -167,13 +167,31 @@ def genrate_ledger():
         description="A sample audio file for testing."
     )
 
-    sample_ledger = Ledger(
-        record=sample_record
-    )
+    sample_ledger = Ledger(record=sample_record)
 
-    return sample_ledger
+    new_data : dict = sample_ledger.model_dump(mode='json')
+
+    return new_data
+
+def append_record(new_record):
+    """
+    append data
+    """
+    print("reading ledger")
+
+    with open(LEDGER_FILE,"r") as ledger:
+        ledger_data : list["Any"] = json.load(ledger)
+
+    ledger_data.append(new_record)
+    
+    with open(LEDGER_FILE,"w") as ledger:
+        json.dump(ledger_data,ledger,indent=2)
+
+    print("updated ledger")
+
 
 def record():
     print("\n\nrecord status checking...")
     ensure_important_directory()
     ensure_ledger_exist()
+    append_record(genrate_ledger())
