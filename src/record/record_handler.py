@@ -1,4 +1,5 @@
-import os
+import os, json
+from uuid import uuid4
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel, UUID4
@@ -51,6 +52,10 @@ def check_input_settings(device_name):
         print(f"Input settings error: {e}")
         return False
 
+
+
+
+
 class FileType(str, Enum):
     WAV = "wav"
     MP4 = "mp4"
@@ -101,19 +106,74 @@ class Ledger(BaseModel):
 
 LEDGER_DIR = "./src/record/tracker/" 
 RECORDINGS_DIR = "./src/record/recordings/"
+LEDGER_DATA = []
 
 def ensure_important_directory():
     """
     genrate dir if not present
     """
-    ledger_dir = os.path.exists(LEDGER_DIR) 
-    recordings_dir = os.path.exists(RECORDINGS_DIR)
-    if not ( ledger_dir or recordings_dir):
-        print("missing important directory")
+    print("\n\nchecking important directory")
+    if not os.path.exists(LEDGER_DIR):
+        print("genrateing missing Ledger directory")
+        os.mkdir(LEDGER_DIR)
     else:
-        print("found important directory")
-        
+        print("Ledger directory located.")
+
+
+    if not os.path.exists(RECORDINGS_DIR):
+        print("genrateing missing Recording directory")
+        os.mkdir(RECORDINGS_DIR)
+    else:
+        print("Recording directory located.")
+
+
+LEDGER_FILE = "./src/record/tracker/ledger.json" 
+def ensure_ledger_exist():
+    """
+    create Ledger.json if not exists
+    """
+    if not os.path.exists(LEDGER_FILE):
+        print("No previous ledger found")
+        with open(LEDGER_FILE,"w") as ledger:
+            ledger.writelines(LEDGER_DATA)      
+            print(f"wrinting...{LEDGER_DATA}")
+    else:
+        print("found existing Ledger.")
+
+
+def genrate_ledger():
+    sample_extras = Extras(
+        recordingDevice="blutooth ex 2p1",
+        driver="ffmpeg",
+        channels=Channels.stereo,
+        sampleRateHz=48000,
+        bitDepth=24,
+        byteRate=96000,
+        gainLevel=5.0
+    )
+
+    sample_record = Record(
+        fileId= uuid4(), 
+        fileName="sample_audio.wav",
+        fileSizeKB=5120.5,
+        durationSec=300.0,
+        createdAt=datetime.now(),
+        filePath="/path/to/sample_audio.wav",
+        fileType=FileType.WAV,
+        owner="John Doe",
+        extras=sample_extras,
+        accessCount=2,
+        categories=["vocal fry", "pitch training"],
+        description="A sample audio file for testing."
+    )
+
+    sample_ledger = Ledger(
+        record=sample_record
+    )
+
+    return sample_ledger
 
 def record():
     print("\n\nrecord status checking...")
     ensure_important_directory()
+    ensure_ledger_exist()
