@@ -24,5 +24,109 @@
       "pitch training"
     ],
     "description": "A sample audio file for testing."
+  },
+  {
+    "fileId": "1896a309-7aa4-44f5-a7b1-ff53441f9e55",
+    "fileName": "sample_audio.wav",
+    "fileSizeKB": 5120.5,
+    "durationSec": 300.0,
+    "createdAt": "2025-01-23T21:27:08.514467",
+    "pinnedStatus": false,
+    "filePath": "/path/to/sample_audio.wav",
+    "fileType": "wav",
+    "owner": "John Doe",
+    "extras": {
+      "recordingDevice": "blutooth ex 2p1",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 48000,
+      "bitDepth": 24,
+      "byteRate": 96000,
+      "gainLevel": 5.0
+    },
+    "accessCount": 2,
+    "categories": [
+      "vocal fry",
+      "pitch training"
+    ],
+    "description": "A sample audio file for testing."
+  },
+  {
+    "fileId": "23baedde-d3ec-4c7b-a2fa-54089933abb8",
+    "fileName": "sample_audio.wav",
+    "fileSizeKB": 5120.5,
+    "durationSec": 300.0,
+    "createdAt": "2025-01-23T22:06:50.186203",
+    "pinnedStatus": false,
+    "filePath": "/path/to/sample_audio.wav",
+    "fileType": "wav",
+    "owner": "John Doe",
+    "extras": {
+      "recordingDevice": "blutooth ex 2p1",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 48000,
+      "bitDepth": 24,
+      "byteRate": 96000,
+      "gainLevel": 5.0
+    },
+    "accessCount": 2,
+    "categories": [
+      "vocal fry",
+      "pitch training"
+    ],
+    "description": "A sample audio file for testing."
+  },
+  {
+    "fileId": "db1f66ce-7754-4c7b-bdda-07257f10be46",
+    "fileName": "sample_audio.wav",
+    "fileSizeKB": 5120.5,
+    "durationSec": 300.0,
+    "createdAt": "2025-01-23T22:06:56.413895",
+    "pinnedStatus": false,
+    "filePath": "/path/to/sample_audio.wav",
+    "fileType": "wav",
+    "owner": "John Doe",
+    "extras": {
+      "recordingDevice": "blutooth ex 2p1",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 48000,
+      "bitDepth": 24,
+      "byteRate": 96000,
+      "gainLevel": 5.0
+    },
+    "accessCount": 2,
+    "categories": [
+      "vocal fry",
+      "pitch training"
+    ],
+    "description": "A sample audio file for testing."
+  },
+  {
+    "fileId": "0080b696-71d9-4a1f-89c2-24c9c68dae51",
+    "fileName": "sample_audio.wav",
+    "fileSizeKB": 5120.5,
+    "durationSec": 300.0,
+    "createdAt": "2025-01-23T22:07:01.725929",
+    "pinnedStatus": false,
+    "filePath": "/path/to/sample_audio.wav",
+    "fileType": "wav",
+    "owner": "John Doe",
+    "extras": {
+      "recordingDevice": "blutooth ex 2p1",
+      "driver": "ffmpeg",
+      "channels": 2,
+      "sampleRateHz": 48000,
+      "bitDepth": 24,
+      "byteRate": 96000,
+      "gainLevel": 5.0
+    },
+    "accessCount": 2,
+    "categories": [
+      "vocal fry",
+      "pitch training"
+    ],
+    "description": "A sample audio file for testing."
   }
 ]
