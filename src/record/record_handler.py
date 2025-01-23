@@ -77,13 +77,13 @@ class Extras(BaseModel):
     class Config:
         extra = "forbid" # no extra option
 
-
 class Record(BaseModel):
     fileId : UUID4
     fileName : str
     fileSizeKB : int | float
     durationSec : int | float
     createdAt : datetime
+    pinnedStatus: bool
     filePath: str
     fileType : FileType
     owner: str
@@ -93,15 +93,9 @@ class Record(BaseModel):
     description: str
 
     class Config:
-        extra = "forbid" # no extra option
-
-
-class Ledger(BaseModel):
-    record : Record  
-
-    class Config:
-        title = "Ledger record"
+        title = "A ledger record"
         description = "A model to validate record entry in Ledger"
+        extra = "forbid" # no extra option
 
 
 LEDGER_DIR = "./src/record/tracker/" 
@@ -158,6 +152,7 @@ def genrate_ledger() -> dict:
         fileSizeKB=5120.5,
         durationSec=300.0,
         createdAt=datetime.now(),
+        pinnedStatus=False,
         filePath="/path/to/sample_audio.wav",
         fileType=FileType.WAV,
         owner="John Doe",
@@ -167,12 +162,11 @@ def genrate_ledger() -> dict:
         description="A sample audio file for testing."
     )
 
-    sample_ledger = Ledger(record=sample_record)
+    record_entry : dict = sample_record.model_dump(mode='json')
 
-    new_data : dict = sample_ledger.model_dump(mode='json')
+    return record_entry
 
-    return new_data
-
+# todo too error pron/ set up backup
 def append_record(new_record):
     """
     append data
